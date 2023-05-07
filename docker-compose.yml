@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+
+  grafana:
+    user: "0:0"
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_DEFAULT_INSTANCE_NAME=${DOMAIN}
+      - GF_SECURITY_ADMIN_USER=root
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel,grafana-worldmap-panel
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=172.17.0.1:25
+      - GF_SMTP_FROM_ADDRESS=${SMTP_FROM_EMAIL}
+    image: grafana/grafana:latest
+    restart: always
+    ports:
+      - "172.17.0.1:3764:3000"
+    volumes:
+      - ./data:/var/lib/grafana
+      - ./grafana.ini:/etc/grafana/grafana.ini:ro

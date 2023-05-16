@@ -13,7 +13,7 @@ services:
       - GF_SMTP_ENABLED=true
       - GF_SMTP_HOST=172.17.0.1:25
       - GF_SMTP_FROM_ADDRESS=${SMTP_FROM_EMAIL}
-    image: grafana/grafana:latest
+    image: grafana/grafana:${SOFTWARE_VERSION_TAG}
     restart: always
     ports:
       - "172.17.0.1:3764:3000"

@@ -9,10 +9,12 @@ services:
       - GF_DEFAULT_INSTANCE_NAME=${DOMAIN}
       - GF_SECURITY_ADMIN_USER=root
       - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - GF_SECURITY_ADMIN_EMAIL=${ADMIN_EMAIL}
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel,grafana-worldmap-panel
       - GF_SMTP_ENABLED=true
       - GF_SMTP_HOST=172.17.0.1:25
       - GF_SMTP_FROM_ADDRESS=${SMTP_FROM_EMAIL}
+      - GF_SERVER_ROOT_URL=https://${DOMAIN}/
     image: grafana/grafana:${SOFTWARE_VERSION_TAG}
     restart: always
     ports:
